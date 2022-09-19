@@ -15,7 +15,7 @@ function Register() {
   const [registerForm, setRegisterForm] = React.useState({
     name: '',
     email: '',
-    role: 'terraformer',
+    role: ROLES[0],
     password: '',
   });
   const isValid =
