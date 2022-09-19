@@ -1,4 +1,4 @@
-import { Button, Card } from 'flowbite-react';
+import { Button } from 'flowbite-react';
 import { DateTime } from 'luxon';
 
 function classifyJob(deadline) {
@@ -21,17 +21,21 @@ function classifyJob(deadline) {
   return 'gray';
 }
 
-function JobItem({ data: { title, description, deadline, applicants } }) {
-  const cardColor = classifyJob(deadline);
+function JobSummaryItem({ setModalData, data }) {
+  function handleReadMore() {
+    setModalData(data);
+  }
+
+  const cardColor = classifyJob(data.deadline);
 
   return (
     <div
       className={`flex rounded-lg border dark:bg-gray-800 bg-white shadow-md dark:border-${cardColor}-600 border-${cardColor}-400 flex-col`}
       data-testid="flowbite-card"
     >
-      <div class="flex h-full flex-col justify-center gap-4 p-6">
+      <div className="flex h-full flex-col justify-center gap-4 p-6">
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {title}
+          {data.title}
         </h5>
         <div className="text-sm flex flex-row items-center text-gray-700 dark:text-gray-400">
           <span className="mr-5">
@@ -49,7 +53,7 @@ function JobItem({ data: { title, description, deadline, applicants } }) {
                 d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
               ></path>
             </svg>
-            Applicants: {applicants.length}
+            Applicants: {data.applicants.length}
           </span>
           <span>
             <svg
@@ -66,14 +70,14 @@ function JobItem({ data: { title, description, deadline, applicants } }) {
                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
               ></path>
             </svg>
-            Deadline: {DateTime.fromISO(deadline).toFormat('yyyy LLL dd')}
+            Deadline: {DateTime.fromISO(data.deadline).toFormat('yyyy LLL dd')}
           </span>
         </div>
         <p className="font-normal text-gray-800 dark:text-gray-300">
-          {`${description.slice(0, 100)}...`}
+          {`${data.description.slice(0, 100)}...`}
         </p>
         <div className="flex flex-row justify-end">
-          <Button size="sm">
+          <Button size="sm" onClick={handleReadMore}>
             Read more
             <svg
               className="ml-2 -mr-1 h-4 w-4"
@@ -94,4 +98,4 @@ function JobItem({ data: { title, description, deadline, applicants } }) {
   );
 }
 
-export default JobItem;
+export default JobSummaryItem;
