@@ -1,6 +1,24 @@
-# Getting Started with Create React App
+# React Nbyula Terraformers (Client-Side)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Alone we can do so little; together we can do so much. With Nbyula growing exponentially, terraformers are looking forward to expanding their team. Could you help them build a customizable job board?
+
+## Objectives
+
+- Terraformers and applicants should be able to sign up and login to the app.
+- Terraformers should be able to post a job listing on a common job board shared between other terraformers.
+  - The listing should contain: title, description (markdown support is a plus), location, deadline, contact phone number and contact email.
+  - Note that these job listings should be presented as cards on a board.
+  - Based upon how far the job listing is from the deadline, the cards should have a color. For simplicity, the listing which are due in more than 21 days should be green, less than 14 days should be yellow and less than 3 days should be red.
+- Terraformers should be able to rearrange the cards on the board by drag and drop to help them modify the order in which they’re displayed to the applicants.
+- Terraformers should be able to archive a job listing.
+- Applicants should be able to mark their interest on any available and active job listing.
+- Terraformers should be able to see interested applicants.
+
+## Technologies
+
+- React
+- TailwindCSS/Flowbite React
+- Redux/ReduxToolkit
 
 ## Available Scripts
 
@@ -38,33 +56,3 @@ If you aren't satisfied with the build tool and configuration choices, you can `
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
