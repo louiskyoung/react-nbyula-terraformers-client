@@ -7,6 +7,7 @@ import Welcome from './modules/home/Welcome';
 import Login from './modules/auth/Login';
 import Register from './modules/auth/Register';
 import Error404 from './modules/Error404';
+import PostJob from './modules/jobs/PostJob';
 import {
   getUserInfo,
   selectIsLoggedIn,
@@ -40,7 +41,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Welcome />} />
         <Route path="/jobs" element={<Welcome />} />
-        {isTerraformer && <Route path="/jobs/post" element={<Welcome />} />}
+        {isTerraformer && <Route path="/jobs/post" element={<PostJob />} />}
         <Route path="/*" element={<Error404 />} />
       </Routes>
     );
