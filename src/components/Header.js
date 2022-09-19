@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigation } from 'react-router-dom';
 import { Navbar, Button } from 'flowbite-react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -10,6 +10,7 @@ import logo from '../styles/logo.svg';
 
 function Header() {
   const dispatch = useDispatch();
+  const location = useLocation();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isTerraformer = useSelector(selectIsTerraformer);
 
@@ -41,12 +42,19 @@ function Header() {
       </div>
       {isLoggedIn && (
         <Navbar.Collapse>
-          <Navbar.Link href="/" active={true}>
+          <Navbar.Link href="/" active={location.pathname === '/'}>
             Home
           </Navbar.Link>
-          <Navbar.Link href="/jobs">Jobs</Navbar.Link>
+          <Navbar.Link href="/jobs" active={location.pathname === '/jobs'}>
+            Jobs
+          </Navbar.Link>
           {isTerraformer && (
-            <Navbar.Link href="/jobs/post">Post a job</Navbar.Link>
+            <Navbar.Link
+              href="/jobs/post"
+              active={location.pathname === '/jobs/post'}
+            >
+              Post a job
+            </Navbar.Link>
           )}
         </Navbar.Collapse>
       )}
