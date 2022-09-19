@@ -58,7 +58,6 @@ function Register() {
                 <Label htmlFor="name" value="Your name" />
               </div>
               <TextInput
-                id="name"
                 type="text"
                 placeholder="Your name"
                 value={registerForm.name}
@@ -72,7 +71,6 @@ function Register() {
                 <Label htmlFor="email" value="E-mail" />
               </div>
               <TextInput
-                id="email"
                 type="email"
                 placeholder="name@company.com"
                 value={registerForm.email}
@@ -103,7 +101,6 @@ function Register() {
                 <Label htmlFor="password" value="Password" />
               </div>
               <TextInput
-                id="password"
                 type="password"
                 placeholder="••••••••"
                 value={registerForm.password}

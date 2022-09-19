@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Navbar, Button } from 'flowbite-react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -10,12 +10,15 @@ import logo from '../styles/logo.svg';
 
 function Header() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isTerraformer = useSelector(selectIsTerraformer);
 
   function handleLogout() {
-    dispatch(logout());
+    dispatch(logout())
+      .unwrap()
+      .then(() => navigate('/'));
   }
 
   return (

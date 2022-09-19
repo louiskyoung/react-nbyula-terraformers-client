@@ -51,7 +51,6 @@ function Login() {
                 <Label htmlFor="email" value="Your email" />
               </div>
               <TextInput
-                id="email"
                 type="email"
                 placeholder="name@company.com"
                 value={loginForm.email}
@@ -65,7 +64,6 @@ function Login() {
                 <Label htmlFor="password" value="Password" />
               </div>
               <TextInput
-                id="password"
                 type="password"
                 placeholder="••••••••"
                 value={loginForm.password}
@@ -86,7 +84,9 @@ function Login() {
               </Link>
             </div>
             <div className="flex justify-end mt-5">
-              <Button type="submit">Log in</Button>
+              <Button type="submit" disabled={!isValid}>
+                Log in
+              </Button>
             </div>
           </form>
         </div>
