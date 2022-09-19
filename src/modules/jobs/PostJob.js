@@ -46,7 +46,6 @@ function PostJob() {
   }
 
   function handleChangeDate(date) {
-    console.log(date);
     setJobForm({
       ...jobForm,
       deadline: date,

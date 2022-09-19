@@ -15,6 +15,11 @@ export const fetchJobs = createAsyncThunk('jobs/fetch', async () => {
   return response.data;
 });
 
+export const archiveJob = createAsyncThunk('jobs/archive', async (id) => {
+  await apiService.delete('/jobs/' + id);
+  return id;
+});
+
 export const jobsSlice = createSlice({
   name: 'jobs',
   initialState,
@@ -25,6 +30,10 @@ export const jobsSlice = createSlice({
     });
     builder.addCase(fetchJobs.fulfilled, (state, { payload }) => {
       state.list = payload;
+    });
+    builder.addCase(archiveJob.fulfilled, (state, { payload: id }) => {
+      const index = state.list.findIndex((job) => job.id === id);
+      state.list.splice(index, 1);
     });
   },
 });
