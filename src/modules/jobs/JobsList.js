@@ -13,7 +13,7 @@ function JobsList() {
 
   return (
     <section className="min-h-[calc(100vh-62px)]">
-      <div className="container px-4 py-8 mx-auto lg:py-16 grid xl:grid-cols-3 lg:grid-cols-2 gap-4">
+      <div className="container px-4 py-8 mx-auto lg:py-16 grid xl:grid-cols-3 lg:grid-cols-2 gap-6">
         {jobs.map((job) => (
           <JobItem key={job.id} data={job}></JobItem>
         ))}
