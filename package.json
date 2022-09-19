@@ -10,6 +10,7 @@
     "axios": "^0.27.2",
     "flowbite": "^1.5.3",
     "flowbite-react": "^0.1.11",
+    "luxon": "^3.0.3",
     "react": "^18.2.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",

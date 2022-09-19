@@ -10,12 +10,20 @@ export const postJob = createAsyncThunk('jobs/post', async (data) => {
   return response.data;
 });
 
+export const fetchJobs = createAsyncThunk('jobs/fetch', async () => {
+  const response = await apiService.get('/jobs');
+  return response.data;
+});
+
 export const jobsSlice = createSlice({
   name: 'jobs',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(postJob.fulfilled, (state, { payload }) => {
+      state.list.push(payload);
+    });
+    builder.addCase(fetchJobs.fulfilled, (state, { payload }) => {
       state.list = payload;
     });
   },
