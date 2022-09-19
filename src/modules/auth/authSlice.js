@@ -10,6 +10,11 @@ export const register = createAsyncThunk('auth/register', async (data) => {
   return response.data;
 });
 
+export const login = createAsyncThunk('auth/login', async (data) => {
+  const response = await apiService.post('/login', data);
+  return response.data;
+});
+
 export const getUserInfo = createAsyncThunk('auth/getUserInfo', async () => {
   const response = await apiService.get('/getUserInfo');
   return response.data;
@@ -26,6 +31,10 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(register.fulfilled, (state, { payload }) => {
+      state.user = payload;
+      localStorage.token = payload.token;
+    });
+    builder.addCase(login.fulfilled, (state, { payload }) => {
       state.user = payload;
       localStorage.token = payload.token;
     });
