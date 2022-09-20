@@ -16,9 +16,8 @@ function Header() {
   const isTerraformer = useSelector(selectIsTerraformer);
 
   function handleLogout() {
-    dispatch(logout())
-      .unwrap()
-      .then(() => navigate('/'));
+    dispatch(logout());
+    navigate('/');
   }
 
   return (
