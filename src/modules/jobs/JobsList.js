@@ -1,9 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import JobSummaryItem from '../../components/JobSummaryItem';
 import JobDetailModal from '../../components/JobDetailModal';
-import { fetchJobs, selectJobsList } from './jobsSlice';
+import { fetchJobs, updateOrder, selectJobsList } from './jobsSlice';
+import { toast } from 'react-toastify';
 
 function JobsList() {
   const dispatch = useDispatch();
@@ -14,14 +17,28 @@ function JobsList() {
     dispatch(fetchJobs());
   }, [dispatch]);
 
+  function rearrangeJob(sourceId, targetId) {
+    const id = targetId;
+    dispatch(updateOrder(sourceId, { id }))
+      .unwrap()
+      .then(toast.success('Successfully rearranged.'));
+  }
+
   return (
     <section className="min-h-[calc(100vh-62px)]">
-      <div className="container px-4 py-8 mx-auto lg:py-16 grid xl:grid-cols-3 lg:grid-cols-2 gap-6">
-        {jobs.map((job) => (
-          <JobSummaryItem key={job.id} data={job} setModalData={setModalData} />
-        ))}
-      </div>
-      <JobDetailModal data={modalData} setModalData={setModalData} />
+      <DndProvider backend={HTML5Backend}>
+        <div className="container px-4 py-8 mx-auto lg:py-16 grid xl:grid-cols-3 lg:grid-cols-2 gap-6">
+          {jobs.map((job) => (
+            <JobSummaryItem
+              key={job.id}
+              data={job}
+              setModalData={setModalData}
+              rearrangeJob={rearrangeJob}
+            />
+          ))}
+        </div>
+        <JobDetailModal data={modalData} setModalData={setModalData} />
+      </DndProvider>
     </section>
   );
 }

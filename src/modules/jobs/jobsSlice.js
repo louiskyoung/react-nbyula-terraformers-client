@@ -25,6 +25,14 @@ export const showInterest = createAsyncThunk('jobs/mark', async (id) => {
   return response.data;
 });
 
+export const updateOrder = createAsyncThunk(
+  'jobs/updateOrder',
+  async (jobId, data) => {
+    const response = await apiService.patch(`/jobs/${jobId}/updateOrder`, data);
+    return response.data;
+  }
+);
+
 export const jobsSlice = createSlice({
   name: 'jobs',
   initialState,
@@ -43,6 +51,9 @@ export const jobsSlice = createSlice({
     builder.addCase(showInterest.fulfilled, (state, { payload }) => {
       const index = state.list.findIndex((job) => job.id === payload.id);
       state.list.splice(index, 1, { ...payload });
+    });
+    builder.addCase(updateOrder.fulfilled, (state, { payload }) => {
+      state.list = [...payload];
     });
   },
 });

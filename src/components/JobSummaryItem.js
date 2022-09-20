@@ -1,3 +1,5 @@
+import React from 'react';
+import { useDrag, useDrop } from 'react-dnd';
 import { Button } from 'flowbite-react';
 import { DateTime } from 'luxon';
 
@@ -7,31 +9,55 @@ function classifyJob(deadline) {
     'days'
   ).days;
   if (difference >= 21) {
-    return 'green';
+    return '#04af04';
   }
 
   if (difference > 4 && difference <= 14) {
-    return 'yellow';
+    return '#dabb22';
   }
 
   if (difference <= 3) {
-    return 'red';
+    return '#ff5050';
   }
 
-  return 'gray';
+  return '#cac9c9';
 }
 
-function JobSummaryItem({ setModalData, data }) {
+function JobSummaryItem({ data, setModalData, rearrangeJob }) {
   function handleReadMore() {
     setModalData(data);
   }
 
+  const [{ isDragging }, dragRef] = useDrag({
+    type: 'item',
+    item: { sourceId: data.id },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  });
+
+  const [spec, dropRef] = useDrop({
+    accept: 'item',
+    drop: (item) => {
+      const { sourceId } = item;
+      const targetId = data.id;
+      if (sourceId !== targetId) {
+        rearrangeJob(sourceId, targetId);
+      }
+    },
+  });
+
+  const ref = React.useRef(null);
+  const dragDropRef = dragRef(dropRef(ref));
+  const opacity = isDragging ? 0.75 : 1;
   const cardColor = classifyJob(data.deadline);
 
   return (
     <div
-      className={`flex rounded-lg border dark:bg-gray-800 bg-white shadow-md dark:border-${cardColor}-600 border-${cardColor}-400 flex-col`}
+      className={`flex rounded-lg border-2 dark:bg-gray-800 bg-white shadow-md flex-col`}
       data-testid="flowbite-card"
+      ref={dragDropRef}
+      style={{ ...opacity, borderColor: cardColor }}
     >
       <div className="flex h-full flex-col justify-center gap-4 p-6">
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
