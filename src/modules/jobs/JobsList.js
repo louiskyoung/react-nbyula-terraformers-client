@@ -18,8 +18,7 @@ function JobsList() {
   }, [dispatch]);
 
   function rearrangeJob(sourceId, targetId) {
-    const id = targetId;
-    dispatch(updateOrder(sourceId, { id }))
+    dispatch(updateOrder({ sourceId, targetId }))
       .unwrap()
       .then(toast.success('Successfully rearranged.'));
   }
@@ -28,10 +27,11 @@ function JobsList() {
     <section className="min-h-[calc(100vh-62px)]">
       <DndProvider backend={HTML5Backend}>
         <div className="container px-4 py-8 mx-auto lg:py-16 grid xl:grid-cols-3 lg:grid-cols-2 gap-6">
-          {jobs.map((job) => (
+          {jobs.map((job, index) => (
             <JobSummaryItem
               key={job.id}
               data={job}
+              index={index}
               setModalData={setModalData}
               rearrangeJob={rearrangeJob}
             />

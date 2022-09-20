@@ -27,8 +27,11 @@ export const showInterest = createAsyncThunk('jobs/mark', async (id) => {
 
 export const updateOrder = createAsyncThunk(
   'jobs/updateOrder',
-  async (jobId, data) => {
-    const response = await apiService.patch(`/jobs/${jobId}/updateOrder`, data);
+  async (data) => {
+    const { sourceId, targetId: id } = data;
+    const response = await apiService.patch(`/jobs/${sourceId}/updateOrder`, {
+      id,
+    });
     return response.data;
   }
 );

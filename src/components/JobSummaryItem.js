@@ -23,7 +23,7 @@ function classifyJob(deadline) {
   return '#cac9c9';
 }
 
-function JobSummaryItem({ data, setModalData, rearrangeJob }) {
+function JobSummaryItem({ index, data, setModalData, rearrangeJob }) {
   function handleReadMore() {
     setModalData(data);
   }
@@ -40,7 +40,7 @@ function JobSummaryItem({ data, setModalData, rearrangeJob }) {
     accept: 'item',
     drop: (item) => {
       const { sourceId } = item;
-      const targetId = data.id;
+      const targetId = index ? data.id : -1;
       if (sourceId !== targetId) {
         rearrangeJob(sourceId, targetId);
       }
