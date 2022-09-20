@@ -35,7 +35,8 @@ function Register() {
       .then(() => {
         toast.success('Successfully registered.');
         navigate('/');
-      });
+      })
+      .catch(() => toast.error('E-mail already exists'));
   }
 
   return (

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Label, TextInput, Button } from 'flowbite-react';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { login } from './authSlice';
 
@@ -29,7 +30,8 @@ function Login() {
       .unwrap()
       .then(() => {
         navigate('/');
-      });
+      })
+      .catch(() => toast.error("Your credential doesn't match."));
   }
   return (
     <section className="flex flex-col items-center justify-center px-6 py-8 mx-auto min-h-[calc(100vh-62px)] lg:py-0">
