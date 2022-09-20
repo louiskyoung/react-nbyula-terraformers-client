@@ -42,7 +42,7 @@ export const jobsSlice = createSlice({
     });
     builder.addCase(showInterest.fulfilled, (state, { payload }) => {
       const index = state.list.findIndex((job) => job.id === payload.id);
-      state.list[index] = [...payload];
+      state.list.splice(index, 1, { ...payload });
     });
   },
 });

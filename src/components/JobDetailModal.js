@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 function JobDetailModal({ data, setModalData }) {
   const dispatch = useDispatch();
   const isTerraformer = useSelector(selectIsTerraformer);
-  const user = useSelector(selectUser);
+  const loggedInUser = useSelector(selectUser);
 
   function handleClose() {
     setModalData(null);
@@ -38,11 +38,13 @@ function JobDetailModal({ data, setModalData }) {
     dispatch(showInterest(id))
       .unwrap()
       .then(() => {
+        setModalData(null);
         toast.success('Successfully showed interest');
       });
   }
 
-  const isInterested = data && data.applicants.some(({ id }) => id === user.id);
+  const isInterested =
+    data && data.applicants.some(({ user }) => user.id === loggedInUser.id);
 
   return (
     <Modal show={!!data} size="2xl" popup={true} onClose={handleClose}>
@@ -61,6 +63,14 @@ function JobDetailModal({ data, setModalData }) {
             <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400 whitespace-pre-line">
               {data.description}
             </p>
+            {isTerraformer && (
+              <p className="text-base leading-relaxed text-gray-700 dark:text-gray-200 mt-5">
+                Applicants:{' '}
+                {!data.applicants.length
+                  ? 0
+                  : data.applicants.map(({ user }) => user.name).join(', ')}
+              </p>
+            )}
           </div>
         </Modal.Body>
       )}
@@ -70,11 +80,11 @@ function JobDetailModal({ data, setModalData }) {
             <Button color="failure" onClick={() => handleArchive(data.id)}>
               Archive
             </Button>
-          ) : (
+          ) : !isInterested ? (
             <Button color="warning" onClick={() => handleShowInterest(data.id)}>
               I'm interested.
             </Button>
-          )}
+          ) : null}
           <Button color="gray" onClick={handleClose}>
             Close
           </Button>
