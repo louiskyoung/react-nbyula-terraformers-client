@@ -45,19 +45,30 @@ function Header() {
       </div>
       {isLoggedIn && (
         <Navbar.Collapse>
-          <Navbar.Link href="/" active={location.pathname === '/'}>
+          <Link
+            className="block py-2 pr-4 pl-3 md:p-0 border-b border-gray-100  text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
+            to="/"
+            style={{ color: location.pathname === '/' ? 'white' : '#999' }}
+          >
             Home
-          </Navbar.Link>
-          <Navbar.Link href="/jobs" active={location.pathname === '/jobs'}>
+          </Link>
+          <Link
+            className="block py-2 pr-4 pl-3 md:p-0 border-b border-gray-100  text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
+            to="/jobs"
+            style={{ color: location.pathname === '/jobs' ? 'white' : '#999' }}
+          >
             Jobs
-          </Navbar.Link>
+          </Link>
           {isTerraformer && (
-            <Navbar.Link
-              href="/jobs/post"
-              active={location.pathname === '/jobs/post'}
+            <Link
+              className="block py-2 pr-4 pl-3 md:p-0 border-b border-gray-100  text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
+              to="/jobs/post"
+              style={{
+                color: location.pathname === '/jobs/post' ? 'white' : '#999',
+              }}
             >
               Post a job
-            </Navbar.Link>
+            </Link>
           )}
         </Navbar.Collapse>
       )}
