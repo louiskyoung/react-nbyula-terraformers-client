@@ -20,6 +20,13 @@ Alone we can do so little; together we can do so much. With Nbyula growing expon
 - TailwindCSS/Flowbite React
 - Redux/ReduxToolkit
 
+## Important
+
+Before deploying the app, please make sure:
+
+- Copy and paste `.env.example` file and rename it: `.env.production.local`
+- In `.env.production.local`, set your own API server address.
+
 ## Available Scripts
 
 In the project directory, you can run:
